@@ -1,46 +1,53 @@
 import React, { useState } from "react";
 import './column.scss';
-
+import './addCardBtn.scss';
+import './submitCardBtn.scss';
+import TaskInput from "./TaskInput";
 import Card from "./Card";
-import './addCardBtn.scss'
+import uuid from "react-uuid";
 
-const Column = ({title, id}) => {
-    const [isCliked, setIsClicked] = useState(false);
-    const [childValue, setChildValue] = useState('');
-    const [isSubmit, setIsSubmit] = useState(false);
-    console.log(isCliked)
-    console.log("is submit", isSubmit)
-    
+
+const Column = ({id, title}) => {
+    const [showInput, setShowInput] = useState(false)
+    const [showSubmitBtn, setShowSubmitBtn] = useState(false)
+    const [cardsArray, setCardsArray] = useState([])
+    const [inputValue, setInputValue] = useState('')
+
+    console.log(cardsArray)
 
     const handleClick = () => {
-        setIsClicked(!isCliked);
+        setShowInput(!showInput)
+    }
+
+    const handleInput = (input) => {
+        input ? setShowSubmitBtn(true) : setShowSubmitBtn(false);
+        if (input !== ''){
+            setInputValue(input)
+        }
+        
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsSubmit(true);
-
-    }
-
-    let addCardBtn = <button className="main__content__btn" onClick={handleClick}>+ Add card</button>;
-    let submitCardBtn = <button type="submit" onClick={handleSubmit}>Submit</button>;
-
-    const onInputChange = (inputValue) => {
-        console.log(inputValue)
-        setChildValue(inputValue);
-    }
-
+        if (inputValue.trim() !== '') { 
+          setCardsArray(cardsArray => [...cardsArray, {id: uuid(), card: inputValue}]);
+        }
+        setInputValue(''); 
+        setShowSubmitBtn(false); 
+      }
 
     return (
-        <>
-            <div key={id} className="main__content__column">{title}
-                { isCliked ? <Card isSubmit={isSubmit} onTextChange={onInputChange} /> : null }
-                {isSubmit ? <Card /> : null}
-                <div>{ childValue ? submitCardBtn : addCardBtn }</div>
-            </div>
-        </>
-        
-    )
+        <form className="main__content__column" onSubmit={handleSubmit}>{title}
+            {cardsArray.map(task => {
+                return <Card key={task.id} card={task.card} />
+            })}
+            {showInput ? <TaskInput value={inputValue} handleInput={handleInput} /> : null}
+            {showSubmitBtn ? 
+                <div><button type="submit" className="main__content__sbmt-btn">Submit</button></div> :
+                <div><button onClick={handleClick} className="main__content__add-btn">+ Add card</button></div>
+            }     
+        </form>
+    )    
 }
 
-export default Column
+export default Column;

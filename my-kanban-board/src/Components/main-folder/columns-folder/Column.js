@@ -13,7 +13,7 @@ const Column = ({id, title}) => {
     const [cardsArray, setCardsArray] = useState([])
     const [inputValue, setInputValue] = useState('')
 
-    console.log(cardsArray)
+
 
     const handleClick = () => {
         setShowInput(!showInput)
@@ -37,7 +37,7 @@ const Column = ({id, title}) => {
       }
 
     return (
-        <form className="main__content__column" onSubmit={handleSubmit}>{title}
+        <form id={id} className="main__content__column" onSubmit={handleSubmit}>{title}
             {cardsArray.map(task => {
                 return <Card key={task.id} card={task.card} />
             })}

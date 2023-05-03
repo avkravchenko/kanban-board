@@ -17,7 +17,7 @@ const Main = () => {
                 <div className="main__content">
                     {columns.map(column => {
                         return (
-                            <Column key={column.id} title={column.title} />
+                            <Column id={column.id} key={column.id} title={column.title} />
                         )
                     })}
                 </div>

@@ -7,7 +7,7 @@ import Card from "./Card";
 import uuid from "react-uuid";
 
 
-const Column1 = ({id, title }) => {
+const Column1 = ({id, title, giveSelectedArray }) => {
     const [showInput, setShowInput] = useState(false)
     const [showSubmitBtn, setShowSubmitBtn] = useState(false)
     const [cardsArray, setCardsArray] = useState([])
@@ -18,7 +18,7 @@ const Column1 = ({id, title }) => {
         if (cardsJSON) {
             setCardsArray(JSON.parse(cardsJSON));
         }
-    }, []);
+    }, [giveSelectedArray]);
 
     
 

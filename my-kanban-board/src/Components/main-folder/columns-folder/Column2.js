@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TaskSelect from "./TaskSelect";
 import Card from "./Card";
 import uuid from "react-uuid";
 
 
-const Column2 = ({title }) => {
+const Column2 = ({title, getSelectedArray }) => {
 
     const [isClicked, setIsClicked] = useState(false)
     const [showCard, setShowCard] = useState(false)
     const [selectedValue, setSelectedValue] = useState([])
     const cardsLS = JSON.parse(localStorage.getItem("myObject"));
 
-    console.log(selectedValue)
+
+    useEffect(() => {
+        const cardsJSON = localStorage.getItem("myObject");
+        if (cardsJSON) {
+            setSelectedValue(JSON.parse(cardsJSON));
+        }
+    }, []);
 
     const handleClick = () => {
         setIsClicked(!isClicked)
@@ -20,30 +26,32 @@ const Column2 = ({title }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setShowCard(true)
+        
     }
 
-    const getSelectedValue = (value) => {
-        setSelectedValue(selectedValue => [...selectedValue, {id: uuid(), card: value, status: "Ready"}])
-        console.log(selectedValue)
-        const cardsJSON = localStorage.getItem("myObject");
-        const cardsArray = JSON.parse(cardsJSON); // Parse JSON string into an array of objects
-        cardsArray.forEach(elem => (elem.card === value) ? elem.status = "Ready" : elem.status = "Backlog"); // Use forEach() method to modify each object in the array
-        console.log("this is text", cardsArray);
-        localStorage.setItem("myObject", JSON.stringify(cardsArray)); // Save the array back to the local storage
-    }
+const getSelectedValue = (value) => {
+  const newSelectedValue = [...selectedValue, { id: uuid(), card: value, status: "Ready" }];
+  setSelectedValue(newSelectedValue);
+  getSelectedArray(newSelectedValue)//test 
+
+  const cardsArray = JSON.parse(localStorage.getItem("myObject"));
+  const updatedCardsArray = cardsArray.map((card) =>
+    newSelectedValue.find((selected) => selected.card === card.card)
+      ? { ...card, status: "Ready" }
+      : { ...card, status: "Backlog" }
+  );
+  localStorage.setItem("myObject", JSON.stringify(updatedCardsArray));
+};
+
 
 
 
     return (
         <form onSubmit={handleSubmit} className="main__content__column">{title}
-            {selectedValue.map(value => {
-                return (
-                    <Card key={uuid()} card={value.card}/>
-                )
-            })}
+            {selectedValue.map(value => value.status === "Ready" ? <Card key={value.id} card={value.card} /> : null)}
 
             { isClicked ? 
-                <TaskSelect getSelectedValue={getSelectedValue}  cardsLS={cardsLS} /> : 
+                <TaskSelect getSelectedValue={getSelectedValue} cardsLS={cardsLS} /> : 
                 null 
             }
 

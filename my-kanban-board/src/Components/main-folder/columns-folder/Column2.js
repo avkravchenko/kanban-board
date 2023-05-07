@@ -4,59 +4,56 @@ import Card from "./Card";
 import uuid from "react-uuid";
 
 
-const Column2 = ({title, getSelectedArray }) => {
+const Column2 = ({ title, getSelectedArray, giveSelectedArray }) => {
 
     const [isClicked, setIsClicked] = useState(false)
-    const [showCard, setShowCard] = useState(false)
-    const [selectedValue, setSelectedValue] = useState([])
+    const [arrLs, setArrLs] = useState([])
 
 
     useEffect(() => {
         const cardsJSON = localStorage.getItem("myObject");
         if (cardsJSON) {
-            setSelectedValue(JSON.parse(cardsJSON));
+            setArrLs(JSON.parse(cardsJSON));
         }
-    }, []);
+    }, [giveSelectedArray]);
 
     const handleClick = () => {
         setIsClicked(!isClicked)
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        setShowCard(true)
-        
+        e.preventDefault()        
     }
 
 const getSelectedValue = (value) => {
-  const newSelectedValue = [...selectedValue, { id: uuid(), card: value, status: "Ready" }];
-  setSelectedValue(newSelectedValue);
-  getSelectedArray(newSelectedValue)//test 
+    //делаем новый массив с выбранным опшеном, присваевам значения 
+  const newSelectedValue = [{ id: uuid(), card: value, status: "Ready" }];
+  getSelectedArray(newSelectedValue)
 
+  //получаем массив из лс с карточками из первой колонки 
   const cardsArray = JSON.parse(localStorage.getItem("myObject"));
+
+  //создаем новый массив с изменением статуса, чтоб передать его в лс
+  //проходим по каждому значению со статусом бэклог, для каждого бэклога вызываем поиск по новому массиву newSelectedValue
+  //если карточка из лс совпадает со значением нового массива, меняем статус и добавляем в обновленный массив updatedCardsArray
   const updatedCardsArray = cardsArray.map((card) =>
     newSelectedValue.find((selected) => selected.card === card.card)
       ? { ...card, status: "Ready" }
-      : { ...card, status: "Backlog" }
+      : { ...card }
   );
   localStorage.setItem("myObject", JSON.stringify(updatedCardsArray));
 };
 
-
-
-
     return (
         <form onSubmit={handleSubmit} className="main__content__column">{title}
-            {selectedValue.map(value => value.status === "Ready" ? <Card key={value.id} card={value.card} /> : null)}
+            {arrLs.map(value => value.status === "Ready" ? <Card key={value.id} card={value.card} /> : null)}
 
             { isClicked ? 
-                <TaskSelect getSelectedValue={getSelectedValue} /> : 
+                <TaskSelect title={'Backlog'} getSelectedValue={getSelectedValue} /> : 
                 null 
             }
 
             <div><button onClick={handleClick} className="main__content__add-btn">+ Add card</button></div>
-
-            
         </form>
     )
 }

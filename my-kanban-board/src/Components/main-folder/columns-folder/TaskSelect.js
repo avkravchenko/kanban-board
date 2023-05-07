@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import uuid from "react-uuid";
 
-const TaskSelect = ({ getSelectedValue }) => {
+const TaskSelect = ({ getSelectedValue, title }) => {
 
     const [actualDataLs, setActualDataLs] = useState([])
     const [selected, setSelected] = useState('')
@@ -23,7 +23,7 @@ const TaskSelect = ({ getSelectedValue }) => {
             <select onChange={handleSelectChange} value={selected}>
                 <option key={uuid()} value={""}>{""}</option>
 
-                {actualDataLs.map(card => card.status === "Backlog" ? <option key={uuid()} value={card.card}>{card.card}</option> : null)}
+                {actualDataLs.map(card => card.status === title ? <option key={uuid()} value={card.card}>{card.card}</option> : null)}
 
                 
             </select>

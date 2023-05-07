@@ -9,7 +9,6 @@ const Column2 = ({title, getSelectedArray }) => {
     const [isClicked, setIsClicked] = useState(false)
     const [showCard, setShowCard] = useState(false)
     const [selectedValue, setSelectedValue] = useState([])
-    const cardsLS = JSON.parse(localStorage.getItem("myObject"));
 
 
     useEffect(() => {
@@ -51,7 +50,7 @@ const getSelectedValue = (value) => {
             {selectedValue.map(value => value.status === "Ready" ? <Card key={value.id} card={value.card} /> : null)}
 
             { isClicked ? 
-                <TaskSelect getSelectedValue={getSelectedValue} cardsLS={cardsLS} /> : 
+                <TaskSelect getSelectedValue={getSelectedValue} /> : 
                 null 
             }
 

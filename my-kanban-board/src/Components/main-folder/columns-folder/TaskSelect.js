@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import uuid from "react-uuid";
 
-const TaskSelect = ({cardsLS, getSelectedValue}) => {
+const TaskSelect = ({ getSelectedValue }) => {
 
     const [actualDataLs, setActualDataLs] = useState([])
     const [selected, setSelected] = useState('')

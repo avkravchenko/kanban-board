@@ -20,7 +20,7 @@ const Column1 = ({id, title, giveSelectedArray }) => {
         }
     }, [giveSelectedArray]);
 
-    
+    console.log(inputValue)
 
     const handleClick = () => {
         setShowInput(!showInput)
@@ -60,7 +60,7 @@ const Column1 = ({id, title, giveSelectedArray }) => {
 
 
             { showInput ? 
-                <TaskInput cardsArray={cardsArray} title={title} value={inputValue} handleInput={handleInput} /> : 
+                <TaskInput showSubmitBtn={showSubmitBtn} title={title} value={inputValue} handleInput={handleInput} /> : 
                 null 
             }
 

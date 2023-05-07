@@ -8,6 +8,7 @@ const Column2 = ({ title, getSelectedArray, giveSelectedArray }) => {
 
     const [isClicked, setIsClicked] = useState(false)
     const [arrLs, setArrLs] = useState([])
+    const [cardsArray, setCardsArray] = useState([])
 
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const getSelectedValue = (value) => {
     //делаем новый массив с выбранным опшеном, присваевам значения 
   const newSelectedValue = [{ id: uuid(), card: value, status: "Ready" }];
   getSelectedArray(newSelectedValue)
+  setCardsArray((cardsArray) => [...cardsArray, newSelectedValue])
 
   //получаем массив из лс с карточками из первой колонки 
   const cardsArray = JSON.parse(localStorage.getItem("myObject"));
@@ -42,6 +44,7 @@ const getSelectedValue = (value) => {
       : { ...card }
   );
   localStorage.setItem("myObject", JSON.stringify(updatedCardsArray));
+  setIsClicked(false)
 };
 
     return (
@@ -49,7 +52,7 @@ const getSelectedValue = (value) => {
             {arrLs.map(value => value.status === "Ready" ? <Card key={value.id} card={value.card} /> : null)}
 
             { isClicked ? 
-                <TaskSelect title={'Backlog'} getSelectedValue={getSelectedValue} /> : 
+                <TaskSelect cardsArray={cardsArray} title={'Backlog'} getSelectedValue={getSelectedValue} /> : 
                 null 
             }
 

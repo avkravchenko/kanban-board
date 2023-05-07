@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import uuid from "react-uuid";
 
-const TaskSelect = ({ getSelectedValue, title }) => {
+const TaskSelect = ({ getSelectedValue, title, showSubmitBtn }) => {
 
     const [actualDataLs, setActualDataLs] = useState([])
     const [selected, setSelected] = useState('')
 
+    console.log(showSubmitBtn)
+
     useEffect(() => {
         const arrayLs = JSON.parse(localStorage.getItem('myObject'))
         setActualDataLs(arrayLs)
-    }, [selected])
+    }, [selected, showSubmitBtn])
 
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;

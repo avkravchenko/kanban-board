@@ -41,6 +41,7 @@ const Column3 = ({ title, getSelectedArray, giveSelectedArray })  => {
           : { ...card }
       );
       localStorage.setItem("myObject", JSON.stringify(updatedCardsArray));
+      setIsClicked(false)
     };
       
 

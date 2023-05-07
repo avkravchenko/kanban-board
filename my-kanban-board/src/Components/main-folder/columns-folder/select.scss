@@ -1,0 +1,10 @@
+select {
+    border-style: none;
+    border-bottom: solid 0.1px gray;
+    border-radius: 5px;
+    color: gray;
+
+    &:focus-visible {
+        outline: -webkit-focus-ring-color auto 0px;
+    }
+}

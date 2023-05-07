@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './column.scss';
 import './addCardBtn.scss';
 import './submitCardBtn.scss';
+import './inputText.scss';
 import TaskInput from "./TaskInput";
 import Card from "./Card";
 import uuid from "react-uuid";
@@ -50,6 +51,7 @@ const Column1 = ({id, title, giveSelectedArray }) => {
 
         setInputValue(''); 
         setShowSubmitBtn(false); 
+        setShowInput(false)
       }
 
       

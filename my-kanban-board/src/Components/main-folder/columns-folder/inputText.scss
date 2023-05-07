@@ -1,0 +1,9 @@
+input[type="text" i] {
+    padding: 1px 2px;
+    border-style: none;
+    border-bottom: solid 0.1px #00000040;
+    
+    &:focus-visible {
+        outline: -webkit-focus-ring-color auto 0px;
+    }
+}

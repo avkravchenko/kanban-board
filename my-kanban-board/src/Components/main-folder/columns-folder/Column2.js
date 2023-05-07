@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TaskSelect from "./TaskSelect";
 import Card from "./Card";
 import uuid from "react-uuid";
+import './select.scss'
 
 
 const Column2 = ({ title, getSelectedArray, giveSelectedArray }) => {

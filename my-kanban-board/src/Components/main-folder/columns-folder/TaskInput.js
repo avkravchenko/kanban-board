@@ -13,7 +13,7 @@ const TaskInput = ({handleInput, value }) => {
 
     return (
         <div className="card input">
-            <input onChange={handleChange} value={value} type="text" />
+            <input placeholder="Write your task here" onChange={handleChange} value={value} type="text" />
         </div>
     )
 }

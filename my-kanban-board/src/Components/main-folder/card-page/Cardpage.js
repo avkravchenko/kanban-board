@@ -24,7 +24,7 @@ const CardPage = () => {
     }
 
     const HandleBlur = () => {
-        setIsFocusLost(true)
+        setIsFocusLost(!isFocusLost)
         setIsClicked(false)
         const newData = data.map(oldData => {
             if (oldData.id === id) {

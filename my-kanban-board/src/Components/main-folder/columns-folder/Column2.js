@@ -29,7 +29,7 @@ const Column2 = ({ title, getSelectedArray, giveSelectedArray }) => {
 
 const getSelectedValue = (value) => {
     //делаем новый массив с выбранным опшеном, присваевам значения 
-  const newSelectedValue = [{ id: uuid(), card: value, status: "Ready" }];
+  const newSelectedValue = [{ id: uuid(), card: value, status: "Ready", description: '' }];
   getSelectedArray(newSelectedValue)
   setCardsArray((cardsArray) => [...cardsArray, newSelectedValue])
 
@@ -50,7 +50,7 @@ const getSelectedValue = (value) => {
 
     return (
         <form onSubmit={handleSubmit} className="main__content__column">{title}
-            {arrLs.map(value => value.status === "Ready" ? <Card key={value.id} card={value.card} /> : null)}
+            {arrLs.map(value => value.status === "Ready" ? <Card id={value.id} key={value.id} card={value.card} /> : null)}
 
             { isClicked ? 
                 <TaskSelect cardsArray={cardsArray} title={'Backlog'} getSelectedValue={getSelectedValue} /> : 

@@ -1,10 +1,14 @@
 import React from "react";
-import './card.scss'
+import './card.scss';
+import { Link } from 'react-router-dom';
 
+const Card = ({card, id}) => {
 
-const Card = ({card}) => {
+    console.log(id)
     return (
-        <div className="card">{card}</div>
+        <Link to={`/card/${id}`}>
+            <div className="card">{card}</div>
+        </Link> 
     )
 }
 

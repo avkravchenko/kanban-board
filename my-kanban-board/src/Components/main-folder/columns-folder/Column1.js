@@ -13,13 +13,15 @@ const Column1 = ({id, title, giveSelectedArray }) => {
     const [showSubmitBtn, setShowSubmitBtn] = useState(false)
     const [cardsArray, setCardsArray] = useState([])
     const [inputValue, setInputValue] = useState('')
+    const [cardLS, setCardsLs] =useState([])
 
     useEffect(() => {
-        const cardsJSON = localStorage.getItem("myObject");
+        const cardsJSON = JSON.parse(localStorage.getItem("myObject"));
+        setCardsLs(cardsJSON)
         if (cardsJSON) {
-            setCardsArray(JSON.parse(cardsJSON));
+            setCardsArray((cardsJSON));
         }
-    }, [giveSelectedArray]);
+    }, [giveSelectedArray, inputValue]);
 
     console.log(inputValue)
 
@@ -30,20 +32,20 @@ const Column1 = ({id, title, giveSelectedArray }) => {
     
     const handleInput = (input) => {
         input ? setShowSubmitBtn(true) : setShowSubmitBtn(false);
-        setInputValue(input)
-        
+        setInputValue(input.trim())
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (inputValue.trim() !== '') { 
-          setCardsArray(cardsArray => [...cardsArray, {id: uuid(), card: inputValue, status: "Backlog"}]);
+          setCardsArray(cardsArray => [...cardsArray, {id: uuid(), card: inputValue, status: "Backlog", description: ''}]);
         }
 
         const newCard = {
             id: uuid(),
             card: inputValue,
-            status: "Backlog"
+            status: "Backlog",
+            description: ''
         }
 
         const newCardsArray = [...cardsArray, newCard];
@@ -58,7 +60,7 @@ const Column1 = ({id, title, giveSelectedArray }) => {
 
     return (
         <form id={id} className="main__content__column" onSubmit={handleSubmit}>{title}
-            {cardsArray.map(task => task.status === "Backlog" ? <Card key={task.id} card={task.card} /> : null)}
+            {cardLS.map(task => task.status === "Backlog" ? <Card id={task.id} key={task.id} card={task.card} /> : null)}
 
 
             { showInput ? 

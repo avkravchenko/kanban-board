@@ -26,7 +26,7 @@ const Column4 = ({ title, getSelectedArray, giveSelectedArray }) => {
 
     const getSelectedValue = (value) => {
       //делаем новый массив с выбранным опшеном, присваевам значения 
-      const newSelectedValue = [{ id: uuid(), card: value, status: "finished" }];
+      const newSelectedValue = [{ id: uuid(), card: value, status: "finished", description: '' }];
       getSelectedArray(newSelectedValue)
     
       //получаем массив из лс с карточками из первой и второй колонки 
@@ -47,7 +47,7 @@ const Column4 = ({ title, getSelectedArray, giveSelectedArray }) => {
 
     return (
         <form onSubmit={handleSubmit} className="main__content__column">{title}
-        {arrLs.map(value => value.status === "finished" ? <Card key={value.id} card={value.card} /> : null)}
+        {arrLs.map(value => value.status === "finished" ? <Card id={value.id} key={value.id} card={value.card} /> : null)}
 
         { isClicked ? 
             <TaskSelect title={'In progress'} getSelectedValue={getSelectedValue} /> : 

@@ -8,12 +8,13 @@ import Card from "./Card";
 import uuid from "react-uuid";
 
 
-const Column1 = ({id, title, giveSelectedArray }) => {
+const Column1 = ({id, title, giveSelectedArray, taskInWork }) => {
     const [showInput, setShowInput] = useState(false)
     const [showSubmitBtn, setShowSubmitBtn] = useState(false)
     const [cardsArray, setCardsArray] = useState([])
     const [inputValue, setInputValue] = useState('')
-    const [cardLS, setCardsLs] =useState([])
+    const [cardLS, setCardsLs] = useState([])
+    const [submit, setSubmit] = useState(false)
 
     useEffect(() => {
         if (!localStorage.getItem('myObject')) {
@@ -30,8 +31,6 @@ const Column1 = ({id, title, giveSelectedArray }) => {
         
     }, [giveSelectedArray, inputValue]);
 
-    console.log(inputValue)
-
     const handleClick = () => {
         setShowInput(!showInput)
         
@@ -39,7 +38,8 @@ const Column1 = ({id, title, giveSelectedArray }) => {
     
     const handleInput = (input) => {
         input ? setShowSubmitBtn(true) : setShowSubmitBtn(false);
-        setInputValue(input.trim())
+        setInputValue(input)
+        
     }
 
     const handleSubmit = (event) => {
@@ -61,6 +61,8 @@ const Column1 = ({id, title, giveSelectedArray }) => {
         setInputValue(''); 
         setShowSubmitBtn(false); 
         setShowInput(false)
+        setSubmit(!submit);
+        taskInWork(submit)
       }
 
       

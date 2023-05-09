@@ -3,7 +3,7 @@ import TaskSelect from "./TaskSelect";
 import uuid from "react-uuid";
 import Card from "./Card";
 
-const Column4 = ({ title, getSelectedArray, giveSelectedArray }) => {
+const Column4 = ({ title, getSelectedArray, giveSelectedArray, taskFinished }) => {
 
     const [isClicked, setIsClicked] = useState(false)
     const [arrLs, setArrLs] = useState([])
@@ -42,6 +42,7 @@ const Column4 = ({ title, getSelectedArray, giveSelectedArray }) => {
       );
       localStorage.setItem("myObject", JSON.stringify(updatedCardsArray));
       setIsClicked(false)
+      taskFinished(value)
     };
       
 

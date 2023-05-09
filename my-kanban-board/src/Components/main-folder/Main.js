@@ -13,7 +13,7 @@ import Column4 from "./columns-folder/Column4";
 ] */
 
 
-const Main = () => {
+const Main = ({taskInWork, taskFinished}) => {
     const [giveSelectedArray, setGiveSelectedArray] = useState()
 
     const getSelectedArray = (selectedArray) => {
@@ -24,10 +24,10 @@ const Main = () => {
         <>
             <main>
                 <div className="main__content">
-                    <Column1 giveSelectedArray={giveSelectedArray} id={"1"}  title={"Backlog"} />
+                    <Column1 taskInWork={taskInWork} giveSelectedArray={giveSelectedArray} id={"1"}  title={"Backlog"} />
                     <Column2 giveSelectedArray={giveSelectedArray} getSelectedArray={getSelectedArray}  id={"2"}  title={"Ready"} />
                     <Column3 giveSelectedArray={giveSelectedArray} getSelectedArray={getSelectedArray} id={"3"}  title={"In progress"} />
-                    <Column4 giveSelectedArray={giveSelectedArray} getSelectedArray={getSelectedArray} id={"4"}  title={"Finished"} />
+                    <Column4 taskFinished={taskFinished} giveSelectedArray={giveSelectedArray} getSelectedArray={getSelectedArray} id={"4"}  title={"Finished"} />
                 </div>
             </main>
         </>

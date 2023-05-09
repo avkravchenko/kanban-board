@@ -13,16 +13,17 @@
     .header__navigation__user-menu-container {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
-        .arrow {
-            margin-left: .5rem;
-        }
-
-        .header__navigation__user-menu {        
+        .header__navigation__user-menu__icon {        
             background-color: #fff;
             padding: 8px 10px;
             border-radius: 40px;
             color: rgb(0, 28, 77);
+        }
+
+        .header__navigation__user-menu__arrow {
+            margin-left: .5rem;
         }
     }
 }

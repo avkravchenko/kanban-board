@@ -16,11 +16,12 @@ const Header = () => {
             <nav className="header__navigation">
                 <h1 className="header__navigation__logo">Awesome Kanban Board</h1>
                 <div onClick={handleClick} className="header__navigation__user-menu-container">
-                    <FontAwesomeIcon className="header__navigation__user-menu" icon={faUser} />
+                    <FontAwesomeIcon className="header__navigation__user-menu__icon" icon={faUser} />
                     {isClicked ? 
-                        <FontAwesomeIcon className="arrow" icon={faSortUp} /> :
-                        <FontAwesomeIcon className="arrow" icon={faSortDown} />
-                    }</div>
+                        <FontAwesomeIcon className="header__navigation__user-menu__arrow" icon={faSortUp} /> :
+                        <FontAwesomeIcon className="header__navigation__user-menu__arrow" icon={faSortDown} />
+                    }
+                </div>
             </nav>
         </header>
     )

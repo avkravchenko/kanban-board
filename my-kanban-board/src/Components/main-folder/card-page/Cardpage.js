@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './cardpage.scss'
+import './cardpage.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 
 const CardPage = () => {
@@ -40,6 +43,7 @@ const CardPage = () => {
 
     return (
         <div className='card-page'>
+            <Link to={`/`}><span className='close-btn'><FontAwesomeIcon icon={faClose} /></span></Link>
             <h1>{data.map(cardLS => (cardLS.id === id) ? cardLS.card : null)}</h1>
             {isClicked ?  
                 <textarea onBlur={HandleBlur} onChange={handleChange} className='text'></textarea> :

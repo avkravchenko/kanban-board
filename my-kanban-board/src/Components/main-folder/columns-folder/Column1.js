@@ -16,11 +16,18 @@ const Column1 = ({id, title, giveSelectedArray }) => {
     const [cardLS, setCardsLs] =useState([])
 
     useEffect(() => {
+        if (!localStorage.getItem('myObject')) {
+            localStorage.setItem('myObject', JSON.stringify([]));
+        }
+
         const cardsJSON = JSON.parse(localStorage.getItem("myObject"));
         setCardsLs(cardsJSON)
+        console.log(cardsJSON)
         if (cardsJSON) {
             setCardsArray((cardsJSON));
-        }
+        } 
+
+        
     }, [giveSelectedArray, inputValue]);
 
     console.log(inputValue)

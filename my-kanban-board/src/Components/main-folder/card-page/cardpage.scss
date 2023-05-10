@@ -1,0 +1,31 @@
+.card-page {
+    max-width: 90%;
+    background-color: aliceblue;
+    border-radius: 10px;
+    min-height: 80vh;
+    margin: 1rem auto;
+    padding: 10px;
+
+    .text {
+        display: block;
+        padding: 10px;
+        background-color: #f6fbff;
+        width: 95%;
+        margin: 0 auto;
+        border-style: none;
+        border-radius: 10px;
+        filter: drop-shadow(5px 2px 5px #d0d0d0);
+        resize:vertical;
+
+        &:focus-visible {
+            outline: -webkit-focus-ring-color auto 0px;
+        }
+    }
+
+    .close-btn {
+        display: block;
+        text-align: end;
+        color: #aaa;
+        text-decoration: none;
+    }
+}

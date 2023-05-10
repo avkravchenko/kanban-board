@@ -1,0 +1,29 @@
+.footer {
+
+    color: #fff;
+    background-color: rgb(0, 114, 189);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .8rem;
+
+
+    .quantity {
+        display: flex;
+        justify-content: space-around;
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .footer {
+        .quantity {
+            flex-direction: column;
+            width: 40%;
+        }
+
+        .name_year {
+            text-align: end;
+        }
+    }
+}

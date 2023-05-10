@@ -1,10 +1,13 @@
 import React from "react";
-import './card.scss'
-import uuid from "react-uuid";
+import './card.scss';
+import { Link } from 'react-router-dom';
 
-const Card = ({card}) => {
+const Card = ({card, id}) => {
+
     return (
-        <div className="card">{card}</div>
+        <Link to={`/card/${id}`}>
+            <div className="card">{card}</div>
+        </Link> 
     )
 }
 

@@ -4,7 +4,13 @@
     padding: 1rem;
     background-color: #ffffff5b;
     border-radius: 10px;
-    min-height: 500px;
+    min-height: 100vh;
     max-width: 90vw;
     margin: 1rem auto;
+}
+
+@media screen and (max-width: 800px) {
+    .main__content{
+        flex-direction: column;
+    }
 }

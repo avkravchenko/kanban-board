@@ -1,6 +1,15 @@
 .main__content__add-btn {
-    color: rgb(120, 120, 120);
+    color: rgb(99, 99, 99);
     border-style: none;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 247, 247, 0);
     cursor: pointer;
+
+    &:hover {
+        color: rgb(37, 37, 37);
+    }
+
+    &:disabled {
+        cursor: default;
+        color: rgba(120, 120, 120, 0.468);
+    }
 }

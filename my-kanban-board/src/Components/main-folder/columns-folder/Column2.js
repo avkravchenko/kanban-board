@@ -28,17 +28,12 @@ const Column2 = ({ title, getSelectedArray, giveSelectedArray, amountInWork }) =
     }
 
 const getSelectedValue = (value) => {
-    //делаем новый массив с выбранным опшеном, присваевам значения 
   const newSelectedValue = [{ id: uuid(), card: value, status: "Ready", description: '' }];
   getSelectedArray(newSelectedValue)
   setCardsArray((cardsArray) => [...cardsArray, newSelectedValue])
 
-  //получаем массив из лс с карточками из первой колонки 
   const cardsArray = JSON.parse(localStorage.getItem("myObject"));
 
-  //создаем новый массив с изменением статуса, чтоб передать его в лс
-  //проходим по каждому значению со статусом бэклог, для каждого бэклога вызываем поиск по новому массиву newSelectedValue
-  //если карточка из лс совпадает со значением нового массива, меняем статус и добавляем в обновленный массив updatedCardsArray
   const updatedCardsArray = cardsArray.map((card) =>
     newSelectedValue.find((selected) => selected.card === card.card)
       ? { ...card, status: "Ready" }

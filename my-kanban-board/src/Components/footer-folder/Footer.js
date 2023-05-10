@@ -20,7 +20,7 @@ const Footer = ({amountInWork, amountFinished}) => {
                 <span>Active tasks: {currentCards.length}</span>
                 <span>Finished tasks: {finished.length}</span>
             </div>
-            <div>Kanban board by Alexander K, 2023</div>
+            <div className="name_year">Kanban board by Alexander K. 2023</div>
         </div>     
     )
 }

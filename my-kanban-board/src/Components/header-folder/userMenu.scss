@@ -13,5 +13,14 @@
         margin: 0;
         list-style: none;
         padding: 0 2rem 0 0;
+
+        li {
+            color: rgb(113, 113, 113);
+            cursor: pointer;
+
+            &:hover {
+                color: rgb(0, 0, 0);
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ const Column1 = ({id, title, giveSelectedArray, taskInWork }) => {
 
         const cardsJSON = JSON.parse(localStorage.getItem("myObject"));
         setCardsLs(cardsJSON)
-        console.log(cardsJSON)
+        
         if (cardsJSON) {
             setCardsArray((cardsJSON));
         } 

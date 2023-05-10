@@ -28,7 +28,7 @@ function App() {
       <Header />
       <Router>
           <Routes>
-            <Route path="/" element={<Main taskInWork={taskInWork} taskFinished={taskFinished} />}/>
+            <Route path="/" element={<Main amountInWork={amountInWork} taskInWork={taskInWork} taskFinished={taskFinished} />}/>
             <Route path="/card/:id" element={<CardPage />}/>
           </Routes>
       </Router>

@@ -5,7 +5,7 @@ import uuid from "react-uuid";
 import './select.scss'
 
 
-const Column2 = ({ title, getSelectedArray, giveSelectedArray }) => {
+const Column2 = ({ title, getSelectedArray, giveSelectedArray, amountInWork }) => {
 
     const [isClicked, setIsClicked] = useState(false)
     const [arrLs, setArrLs] = useState([])
@@ -17,7 +17,7 @@ const Column2 = ({ title, getSelectedArray, giveSelectedArray }) => {
         if (cardsJSON) {
             setArrLs(JSON.parse(cardsJSON));
         }
-    }, [giveSelectedArray]);
+    }, [giveSelectedArray, amountInWork]);
 
     const handleClick = () => {
         setIsClicked(!isClicked)
@@ -57,7 +57,15 @@ const getSelectedValue = (value) => {
                 null 
             }
 
-            <div><button onClick={handleClick} className="main__content__add-btn">+ Add card</button></div>
+            <div>
+                <button
+                    onClick={handleClick}
+                    className="main__content__add-btn"
+                    disabled={!arrLs.some((value) => value.status === "Backlog")}
+                >
+                    + Add card
+                </button>
+            </div>
         </form>
     )
 }

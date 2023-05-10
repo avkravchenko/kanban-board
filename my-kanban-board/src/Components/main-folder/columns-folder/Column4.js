@@ -56,7 +56,15 @@ const Column4 = ({ title, getSelectedArray, giveSelectedArray, taskFinished }) =
         }
 
 
-        <div><button onClick={handleClick} className="main__content__add-btn">+ Add card</button></div>
+        <div>
+            <button
+                onClick={handleClick}
+                className="main__content__add-btn"
+                disabled={!arrLs.some((value) => value.status === "In progress")}
+            >
+                + Add card
+            </button>
+        </div>
     </form>
     )
 }

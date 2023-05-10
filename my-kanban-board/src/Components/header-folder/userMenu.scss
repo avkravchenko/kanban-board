@@ -1,0 +1,17 @@
+.user-menu__list {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 1.5rem;
+    top: 3rem;
+    color: black;
+    padding: 1rem;
+    z-index: 1;
+    border-radius: 15px;
+    filter: drop-shadow(2px 2px 2px grey);
+
+    .user-menu__ul {
+        margin: 0;
+        list-style: none;
+        padding: 0 2rem 0 0;
+    }
+}

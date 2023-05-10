@@ -2,6 +2,7 @@ import react, { useState } from "react";
 import './header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import UserMenu from "./UserMenu";
 
 const Header = () => {
 
@@ -22,6 +23,7 @@ const Header = () => {
                         <FontAwesomeIcon className="header__navigation__user-menu__arrow" icon={faSortDown} />
                     }
                 </div>
+                {isClicked ? <UserMenu /> : null}
             </nav>
         </header>
     )
